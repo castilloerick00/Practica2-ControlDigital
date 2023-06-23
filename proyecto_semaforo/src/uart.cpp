@@ -21,6 +21,7 @@ const int BOTON_V = 6;
 // Función setup de Arduino (se ejecuta una vez al iniciar)
 void setup() {
   // Inicializamos las variables como entrada o salida
+  Serial.begin(9600);
   pinMode(BOTON_M, INPUT);  
   pinMode(BOTON_V, INPUT);
   inicializar_semaforo(); 

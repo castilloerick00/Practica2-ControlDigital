@@ -36,10 +36,13 @@ void pulsantes(int sw){
 // Función para la lectura del pulsante del cambio de MODO
 void condicion_antirrebote(int pul) {
   pulsantes(pul);                         // Detectamos un pulso
-  if (estadoActual == Antirrebote){   
+  if (estadoActual == Antirrebote){  
+    Serial.println(" ");
+    Serial.println("Transición del pulsante 1: "); 
     while(1){                             // Esperamos que se finalice el antirrebote
       pulsantes(pul);
       if (estadoActual == Activo){    
+        Serial.println("Pulsante 1 presionado");
         break;
       }
     }
@@ -47,6 +50,7 @@ void condicion_antirrebote(int pul) {
       while(1){                           // Esperamos que se suelte el pulsante
         pulsantes(pul);
         if (estadoActual == Antirrebote){ // Si se suelta el pulsante, rompemos el bucle
+        Serial.println("Transición del pulsante 1: ");
           break;
         }
       }
@@ -55,18 +59,23 @@ void condicion_antirrebote(int pul) {
       while(1){                           // Esperamos que finalice el antirrebote
         pulsantes(pul); 
         if (estadoActual == Inactivo){    // Verificamos si se solto el pulsante
+          Serial.println("Pulsante 1 liberado");
+          Serial.println(" ");
           break;
         }
       }
 
       // En el caso de haber detectado un pulso
       if (modo == NORMAL){              // Cambiamos de modo NORMAL a modo DESCONECTADO
+        Serial.println("Modo actual : DESCONECTADO");
         modo = DESCONECTADO;
         estado_actual = D_AMARILLO;}
       else if (modo == DESCONECTADO){   // Cambiamos de modo DESCONECTADO a modo ALARMA
+        Serial.println("Modo actual : ALARMA");
         modo = ALARMA;  
         estado_actual = ESTADO_ROJO;}
       else {                            // Cambiamos de modo ALARMA a modo NORMAL
+        Serial.println("Modo actual : NORMAL");
         modo = NORMAL;
         estado_actual = ESTADO_VERDE;
       }
@@ -78,9 +87,12 @@ void condicion_antirrebote(int pul) {
 void condicion_anti(int pulsa) {
   pulsantes(pulsa);                       // Detectamos un pulso
   if (estadoActual == Antirrebote){ 
+    Serial.println(" ");
+    Serial.println("Transición del pulsante 2: "); 
     while(1){                             // Esperamos que se finalice el antirrebote
       pulsantes(pulsa);
-      if (estadoActual == Activo){        
+      if (estadoActual == Activo){  
+        Serial.println("Pulsante 2 presionado");      
         break;
       }
     }
@@ -88,6 +100,7 @@ void condicion_anti(int pulsa) {
       while(1){                           // Esperamos que se suelte el pulsante
         pulsantes(pulsa);
         if (estadoActual == Antirrebote){ // Si se suelta el pulsante, rompemos el bucle
+          Serial.println("Transición del pulsante 2: ");
           break;
         }
       }
@@ -96,6 +109,8 @@ void condicion_anti(int pulsa) {
       while(1){                           // Esperamos que finalice el antirrebote
         pulsantes(pulsa);
         if (estadoActual == Inactivo){    // Verificamos si se solto el pulsante
+          Serial.println("Pulsante 2 liberado");
+          Serial.println(" ");
           break;
         }
       }

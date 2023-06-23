@@ -1,5 +1,6 @@
 #include "teclas.h"
 
+// Comentario de prueba 
 
 void pulsantes(int sw){
   switch (estadoActual) {
